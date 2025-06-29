@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import indexRouter from './routes/index.js';
+import rootRouter from './routes/root.js';
 import apiRouter from './routes/api.js';
 
 dotenv.config();
@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Mount routes
-app.use('/', indexRouter);
+app.use('/', rootRouter);
 app.use('/api', apiRouter);
 
 // 404 handler - must be after all routes
