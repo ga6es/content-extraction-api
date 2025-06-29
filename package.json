@@ -7,7 +7,6 @@
   "author": "alphasec",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^16.3.1",
     "express": "^4.19.2",
     "@supabase/supabase-js": "^2.39.0",
     "openai": "^4.24.1",
