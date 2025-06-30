@@ -1,7 +1,6 @@
 {
   "name": "content-extraction-api",
   "version": "1.0.0",
-<<<<<<< HEAD
   "description": "A minimal Node.js web application with content extraction API.",
   "main": "app.js",
   "type": "module",
@@ -9,10 +8,9 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.19.2",
-    "openai": "^4.20.1",
-    "dotenv": "^16.3.1",
+    "@supabase/supabase-js": "^2.39.0",
     "openai": "^4.24.1",
-    "@supabase/supabase-js": "^2.39.0"
+    "dotenv": "^16.3.1"
   },
   "scripts": {
     "start": "node app.js",
@@ -20,18 +18,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-=======
-  "type": "module",
-  "description": "API for triggering the content extraction pipeline.",
-  "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
-  },
-  "dependencies": {
-    "express": "^4.18.4"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.2"
->>>>>>> c09aa23 (Refactor to ESM and API-only backend with secure env vars)
   }
 }

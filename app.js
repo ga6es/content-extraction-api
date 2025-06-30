@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-import 'dotenv/config';
 import express from 'express';
 import dotenv from 'dotenv';
 import rootRouter from './routes/root.js';
@@ -38,17 +36,4 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`✅ Content Extraction API running on port ${port}`);
-=======
-import express from "express";
-import routes from "./routes/index.js";
-
-const app = express();
-
-app.use(express.json());
-app.use("/", routes);
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`✅ Server running on port ${port}`);
->>>>>>> c09aa23 (Refactor to ESM and API-only backend with secure env vars)
 });
