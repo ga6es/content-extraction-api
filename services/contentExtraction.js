@@ -1,3 +1,9 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
+console.log("DEBUG - SUPABASE_URL in service:", process.env.SUPABASE_URL);
+console.log("DEBUG - SUPABASE_SERVICE_ROLE_KEY in service:", process.env.SUPABASE_SERVICE_ROLE_KEY);
+
 import { createClient } from '@supabase/supabase-js';
 import OpenAI from 'openai';
 
@@ -136,29 +142,28 @@ Return only valid JSON without any additional text or formatting.
  */
 async function storeExtractedContent(originalArticle, extractedContent) {
     const articleData = {
-        original_id: originalArticle.id,
+        external_id: originalArticle.external_id,
         title: extractedContent.title,
         summary: extractedContent.summary,
-        key_points: extractedContent.key_points,
-        entities: extractedContent.entities,
-        sentiment: extractedContent.sentiment,
-        category: extractedContent.category,
-        tags: extractedContent.tags,
-        original_content: originalArticle.content || originalArticle.text || originalArticle.body,
-        source_url: originalArticle.url,
-        processed_at: new Date().toISOString(),
-        metadata: {
-            extraction_version: '1.0.0',
-            model_used: 'gpt-3.5-turbo'
-        }
+        url: originalArticle.url,
+        content: originalArticle.content || originalArticle.text || originalArticle.body,
+        extraction_status: "success",
+        extraction_error: null,
+        published_at: new Date().toISOString(),
+        source: originalArticle.source || null,
+        created_at: new Date().toISOString()
     };
 
+    console.log("DEBUG - Payload to insert:", articleData);
+
     const { data, error } = await supabase
-        .from('extracted_articles')
+        .from('raw_articles')
         .insert([articleData]);
 
+    console.log("DEBUG - Supabase insert result:", { data, error });
+
     if (error) {
-        throw new Error(`Supabase storage error: ${error.message}`);
+        throw new Error(`Supabase storage error: ${JSON.stringify(error)}`);
     }
 
     return data;

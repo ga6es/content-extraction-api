@@ -1,9 +1,15 @@
-import express from 'express';
 import dotenv from 'dotenv';
+dotenv.config();
+
+console.log('DEBUG - SUPABASE_URL:', process.env.SUPABASE_URL);
+console.log('DEBUG - SUPABASE_SERVICE_ROLE_KEY:', process.env.SUPABASE_SERVICE_ROLE_KEY);
+console.log('DEBUG - OPENAI_API_KEY:', process.env.OPENAI_API_KEY);
+console.log('DEBUG - EXTRACTION_API_KEY:', process.env.EXTRACTION_API_KEY);
+console.log('DEBUG - PORT:', process.env.PORT);
+
+import express from 'express';
 import rootRouter from './routes/root.js';
 import apiRouter from './routes/api.js';
-
-dotenv.config();
 
 const app = express();
 
